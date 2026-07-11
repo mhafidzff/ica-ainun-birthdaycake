@@ -145,6 +145,9 @@
 <body>
 <div class="device">
 
+  <audio id="bgMusic" loop></audio>
+  <button id="musicToggle" class="hidden" style="position:fixed;bottom:18px;right:calc(50% - 240px + 18px);z-index:50;width:40px;height:40px;border-radius:50%;background:var(--wax);color:var(--paper);border:none;font-size:16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.25);">♪</button>
+
   <nav>
     <span class="nav-mark">untuk Ainun</span>
     <button class="nav-back hidden" id="backBtn">&larr; kembali</button>
@@ -266,7 +269,7 @@
    ====================================================================== */
 const CONFIG = {
   // sandi sementara — ganti sesuai keinginanmu
-  password: "Jakeycha",
+  password: "Jakeychaa",
 
   // simpan status "unlocked" supaya tidak perlu ketik sandi tiap buka? true/false
   rememberUnlock: false,
@@ -274,6 +277,10 @@ const CONFIG = {
   // foto di halaman surat: taruh nama file gambar (jika file gambar ada di folder yang sama
   // dengan file HTML ini saat di-upload) atau taruh URL gambar langsung. Kosongkan ("") untuk placeholder.
   letterPhotoUrl: "kebun_raya.jpeg",
+
+  // musik latar: taruh nama file mp3 (di folder yang sama) atau URL langsung. Kosongkan ("") untuk nonaktif.
+  backgroundMusicUrl: "",
+  musicVolume: 0.35,
 
   aboutYou: [
     { id: "admire5",  title: "5 Things I Admire About You",     driveUrl: "https://drive.google.com/PASTE_LINK_1" },
@@ -341,6 +348,23 @@ document.getElementById("backBtn").addEventListener("click", goBack);
 /* ---------- landing / password ---------- */
 document.getElementById("pwBtn").addEventListener("click", tryUnlock);
 document.getElementById("pwInput").addEventListener("keydown", e=>{ if(e.key==="Enter") tryUnlock(); });
+function setupMusic(){
+  const audio = document.getElementById("bgMusic");
+  const btn = document.getElementById("musicToggle");
+  if(!CONFIG.backgroundMusicUrl) return;
+  audio.src = CONFIG.backgroundMusicUrl;
+  audio.volume = CONFIG.musicVolume ?? 0.35;
+  btn.classList.remove("hidden");
+  btn.addEventListener("click", ()=>{
+    if(audio.paused){ audio.play().catch(()=>{}); btn.textContent = "♪"; }
+    else { audio.pause(); btn.textContent = "🔇"; }
+  });
+}
+function startMusic(){
+  const audio = document.getElementById("bgMusic");
+  if(CONFIG.backgroundMusicUrl){ audio.play().catch(()=>{}); }
+}
+
 async function tryUnlock(){
   const val = document.getElementById("pwInput").value.trim();
   if(val.toLowerCase() === CONFIG.password.toLowerCase()){
@@ -348,6 +372,7 @@ async function tryUnlock(){
     if(CONFIG.rememberUnlock){
       try{ await window.storage.set(UNLOCK_KEY, "true", false); }catch(e){}
     }
+    startMusic();
     goTo("letter");
   } else {
     document.getElementById("pwError").textContent = "sandi belum tepat, coba lagi";
@@ -497,6 +522,7 @@ function renderLetterPhoto(){
   renderAll();
   updateBadges();
   renderLetterPhoto();
+  setupMusic();
   show("landing");
   if(CONFIG.rememberUnlock){
     try{
