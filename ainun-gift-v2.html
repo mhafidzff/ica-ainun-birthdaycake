@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Ainun</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Lora:ital,wght@0,400;0,500;1,400&family=Dancing+Script:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EAE0C8; --paper-2:#E1D5B8; --ink:#2B2620; --ink-soft:#6B6355;
+    --wax:#7A3B32; --wax-bright:#9C3B37; --brass:#A89B7F; --card:#F1E9D6;
+    --ok:#5C7A5A;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;min-height:100vh;}
+  .device{max-width:480px;margin:0 auto;min-height:100vh;background:var(--paper);position:relative;box-shadow:0 0 40px rgba(0,0,0,0.08);}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:16px 22px;border-bottom:0.5px solid var(--brass);}
+  .nav-mark{font-family:'Source Serif 4',serif;font-size:13px;color:var(--ink-soft);}
+  .nav-back{background:none;border:none;font-size:13px;color:var(--ink-soft);cursor:pointer;display:flex;align-items:center;gap:4px;padding:0;}
+  .nav-back:hover{color:var(--wax);}
+  .hidden{display:none !important;}
+  .dateline{font-family:'Source Serif 4',serif;font-size:13px;color:var(--ink-soft);font-style:italic;margin:0 0 6px;}
+
+  /* ===== LANDING / PASSWORD ===== */
+  .landing{padding:64px 30px 40px;text-align:center;}
+  .landing h1{font-family:'Source Serif 4',serif;font-weight:500;font-size:26px;margin:0 0 18px;line-height:1.4;}
+  .landing-msg{font-family:'Lora',serif;font-style:italic;color:var(--ink-soft);font-size:14.5px;line-height:1.7;margin:0 0 36px;}
+  .pw-row{display:flex;flex-direction:column;gap:10px;align-items:center;}
+  .pw-row input{
+    width:100%;max-width:240px;text-align:center;
+    background:var(--card);border:0.5px solid var(--brass);border-radius:2px;
+    padding:12px 14px;font-family:'Inter',sans-serif;font-size:14px;color:var(--ink);
+  }
+  .pw-row input:focus{outline:none;border-color:var(--wax);}
+  .pw-row button{
+    background:var(--wax);color:var(--paper);border:none;border-radius:2px;
+    padding:12px 28px;font-family:'Inter',sans-serif;font-size:13.5px;letter-spacing:0.03em;
+    cursor:pointer;
+  }
+  .pw-row button:hover{background:var(--wax-bright);}
+  .pw-error{color:var(--wax-bright);font-size:12.5px;height:16px;margin-top:2px;}
+
+  /* ===== LETTER PAGE ===== */
+  .letter-page{padding:40px 26px 50px;position:relative;}
+  .stamp-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
+  .photo-frame{
+    width:78px;height:88px;border:3px solid var(--wax-bright);border-radius:3px;
+    background:var(--card);display:flex;align-items:center;justify-content:center;
+    font-size:9px;color:var(--ink-soft);text-align:center;padding:4px;
+    box-shadow:0 2px 4px rgba(0,0,0,0.1);
+  }
+  .letter-title{font-family:'Source Serif 4',serif;font-weight:600;font-size:26px;text-align:center;color:var(--wax-bright);letter-spacing:0.01em;margin:18px 0 26px;}
+  .letter-salutation{font-family:'Dancing Script',cursive;font-size:28px;color:var(--wax-bright);margin:0 0 18px;}
+  .letter-body{font-family:'Lora',serif;font-size:15.5px;line-height:1.85;}
+  .letter-body p{margin:0 0 18px;}
+  .letter-closing{font-family:'Lora',serif;font-size:15px;line-height:1.7;margin-top:22px;color:var(--ink);}
+  .letter-signoff-line{font-family:'Lora',serif;font-style:italic;font-size:14px;color:var(--ink-soft);margin-top:24px;}
+  .letter-signature{font-family:'Dancing Script',cursive;font-size:30px;color:var(--wax-bright);margin:2px 0 0;}
+  .continue-btn{
+    display:block;width:100%;margin-top:36px;background:var(--wax);color:var(--paper);
+    border:none;border-radius:2px;padding:14px;font-family:'Inter',sans-serif;font-size:14px;
+    letter-spacing:0.03em;cursor:pointer;
+  }
+  .continue-btn:hover{background:var(--wax-bright);}
+
+  /* ===== MENU ===== */
+  .menu-page{padding:44px 26px 40px;}
+  .menu-title{font-family:'Source Serif 4',serif;font-size:22px;text-align:center;margin:0 0 8px;}
+  .menu-sub{text-align:center;font-family:'Lora',serif;font-style:italic;color:var(--ink-soft);font-size:13.5px;margin:0 0 32px;}
+  .menu-list{display:flex;flex-direction:column;gap:12px;}
+  .menu-item{
+    background:var(--card);border:0.5px solid var(--brass);border-radius:2px;
+    padding:18px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;
+    transition:border-color 0.2s ease;
+  }
+  .menu-item:hover{border-color:var(--wax);}
+  .menu-item.disabled{opacity:0.55;cursor:default;}
+  .menu-item-title{font-family:'Source Serif 4',serif;font-size:16.5px;margin:0 0 3px;}
+  .menu-item-sub{font-size:11.5px;color:var(--ink-soft);}
+  .badge{font-size:10px;padding:3px 8px;border-radius:99px;background:var(--paper-2);color:var(--ink-soft);font-family:'Inter',sans-serif;}
+  .badge.uc{background:#d8ccae;color:#7a6a3f;}
+
+  /* ===== SUBPAGE SHELL ===== */
+  .page{padding:36px 26px 60px;}
+  .page-title{font-family:'Source Serif 4',serif;font-weight:500;font-size:22px;margin:0 0 26px;}
+
+  /* row item shared (about you / poem style) */
+  .doc-row{
+    background:var(--card);border:0.5px solid var(--brass);border-radius:2px;
+    padding:16px 18px;margin-bottom:12px;
+  }
+  .doc-row-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+  .doc-title{font-family:'Source Serif 4',serif;font-style:italic;font-size:15px;}
+  .row-actions{display:flex;gap:8px;flex-wrap:wrap;}
+  .btn-secondary{
+    background:transparent;border:0.5px solid var(--brass);color:var(--ink-soft);
+    padding:8px 12px;border-radius:2px;font-size:12px;cursor:pointer;font-family:'Inter',sans-serif;
+  }
+  .btn-secondary:hover{border-color:var(--wax);color:var(--wax);}
+  .btn-primary{
+    background:var(--wax);border:none;color:var(--paper);
+    padding:8px 14px;border-radius:2px;font-size:12px;cursor:pointer;font-family:'Inter',sans-serif;
+  }
+  .btn-primary:hover{background:var(--wax-bright);}
+  .btn-done{background:var(--ok);color:var(--paper);}
+  .complete-mark{font-size:11px;color:var(--ok);font-family:'Inter',sans-serif;display:flex;align-items:center;gap:4px;}
+
+  /* ===== OPEN WHEN (envelope style) ===== */
+  .envelope{border:0.5px solid var(--brass);background:var(--card);border-radius:2px;overflow:hidden;margin-bottom:10px;}
+  .envelope-flap{padding:15px 18px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;}
+  .envelope.locked .envelope-flap{cursor:default;opacity:0.55;}
+  .envelope-title{font-family:'Source Serif 4',serif;font-style:italic;font-size:14.5px;}
+  .wax-seal{
+    width:22px;height:22px;border-radius:50%;background:var(--wax);display:flex;align-items:center;justify-content:center;
+    color:var(--paper);font-family:'Source Serif 4',serif;font-size:10px;flex-shrink:0;transition:transform 0.25s ease;
+  }
+  .envelope.open .wax-seal{transform:scale(0);}
+  .envelope-content{max-height:0;overflow:hidden;transition:max-height 0.35s ease;padding:0 18px;}
+  .envelope.open .envelope-content{max-height:640px;padding:0 18px 18px;}
+  .not-ready-tag{font-size:11px;color:var(--ink-soft);font-style:italic;}
+  .embed-box{border:0.5px solid var(--brass);border-radius:2px;overflow:hidden;margin-bottom:10px;background:#00000010;}
+  .embed-placeholder{
+    padding:22px;text-align:center;font-size:12px;color:var(--ink-soft);font-family:'Inter',sans-serif;
+    border:1px dashed var(--brass);border-radius:2px;margin-bottom:10px;background:var(--paper-2);
+  }
+  .embed-label{font-size:11px;color:var(--ink-soft);margin-bottom:6px;font-family:'Inter',sans-serif;}
+
+  /* ===== MISSING HOME ===== */
+  .uc-banner{
+    background:var(--paper-2);border:0.5px dashed var(--brass);border-radius:2px;
+    padding:14px 16px;text-align:center;font-size:12.5px;color:var(--ink-soft);margin-bottom:22px;font-family:'Inter',sans-serif;
+  }
+  .uc-item{
+    background:var(--card);border:0.5px solid var(--brass);border-radius:2px;
+    padding:16px 18px;margin-bottom:12px;display:flex;align-items:center;gap:12px;opacity:0.75;
+  }
+  .uc-icon{width:34px;height:34px;border-radius:50%;background:var(--paper-2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px;}
+  .uc-title{font-family:'Source Serif 4',serif;font-size:14.5px;}
+  .uc-sub{font-size:11px;color:var(--ink-soft);}
+
+  .proto-tag{text-align:center;font-size:10.5px;color:var(--brass);letter-spacing:0.05em;padding:20px 0 0;}
+</style>
+</head>
+<body>
+<div class="device">
+
+  <nav>
+    <span class="nav-mark">untuk Ainun</span>
+    <button class="nav-back hidden" id="backBtn">&larr; kembali</button>
+  </nav>
+
+  <!-- LANDING -->
+  <section id="view-landing" class="landing">
+    <p class="dateline">Jakarta &mdash; Melbourne</p>
+    <h1>Hai Ainun,<br>kami ingin mengucapkan<br>selamat ulang tahun.</h1>
+    <p class="landing-msg" id="landingMsg">[placeholder — tulis pesan pembuka kamu di sini, akan tampil sebelum kolom password]</p>
+    <div class="pw-row">
+      <input type="password" id="pwInput" placeholder="masukkan kata sandi" />
+      <button id="pwBtn">Lanjutkan</button>
+      <div class="pw-error" id="pwError"></div>
+    </div>
+  </section>
+
+  <!-- BIRTHDAY LETTER -->
+  <section id="view-letter" class="letter-page hidden">
+    <div class="stamp-row">
+      <svg width="96" height="80" viewBox="0 0 120 90">
+        <g transform="rotate(-7 45 42)">
+          <circle cx="45" cy="42" r="28" fill="none" stroke="#9C3B37" stroke-width="1.4"/>
+          <circle cx="45" cy="42" r="22" fill="none" stroke="#9C3B37" stroke-width="0.8"/>
+          <path d="M45 51 C38 45 33 40 33 34.5 C33 30 36.5 27.5 40 29.3 C42 30.3 45 34 45 34 C45 34 48 30.3 50 29.3 C53.5 27.5 57 30 57 34.5 C57 40 52 45 45 51 Z" fill="#9C3B37" opacity="0.9"/>
+          <text x="45" y="76" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" letter-spacing="2.5" fill="#9C3B37">WITH LOVE</text>
+          <line x1="74" y1="24" x2="102" y2="14" stroke="#9C3B37" stroke-width="1"/>
+          <line x1="76" y1="33" x2="106" y2="26" stroke="#9C3B37" stroke-width="1"/>
+          <line x1="76" y1="42" x2="108" y2="42" stroke="#9C3B37" stroke-width="1"/>
+          <line x1="76" y1="51" x2="106" y2="58" stroke="#9C3B37" stroke-width="1"/>
+          <line x1="74" y1="60" x2="102" y2="70" stroke="#9C3B37" stroke-width="1"/>
+        </g>
+      </svg>
+      <div class="photo-frame" id="letterPhotoFrame">taruh foto berdua di sini</div>
+    </div>
+
+    <h2 class="letter-title">HELP! WE ARE TURNING 28!</h2>
+    <p class="letter-salutation">Ainun yang tersayang,</p>
+
+    <div class="letter-body">
+      <p>Entah bagaimana kita sampai ke sini, tiba-tiba kita berdua sudah 28 tahun.</p>
+      <p>Dari 28 tahun di dunia ini, 1,5 tahun terakhir aku menjalani hari-hari ku yang paling bahagia. Aku yang terkadang lemah kamu yang kuatkan, aku kadang sedih kamu bahagiakan, aku sakit kamu memberi perhatian. Meskipun lemari kamu isinya baju hitam dan putih melulu, tapi kamu memberikan warna lainnya untuk aku, yang indah-indah. Semoga aku juga bisa begitu.</p>
+      <p>Apa kabarmu hari ini? Apa kabar kamu kemarin? Apa kabar Melbourne? Gimana Kabar Lygon? Hirup udara sekitarmu dan tengok langit terang Melbourne selagi bisa.</p>
+      <p>Tinggal 6 bulan lagi, Hanya tinggal 6 bulan lagi. Setelah ini kita akan bersama, tanpa jarak menghalangi, tanpa waktu tidur yang berbeda.</p>
+      <p>Kita akan menjawab setiap pertanyaan, membuka setiap lembar misteri kehidupan bersama-sama.</p>
+    </div>
+
+    <div class="letter-closing">
+      Kamu dan Aku<br>
+      Sabar yaaa.... sedikit lagi kita pasti bisa
+    </div>
+    <p class="letter-signoff-line">Dengan segenap jiwa,</p>
+    <p class="letter-signature">Hafidz</p>
+
+    <button class="continue-btn" id="toMenuBtn">Lanjutkan</button>
+  </section>
+
+  <!-- MAIN MENU -->
+  <section id="view-menu" class="menu-page hidden">
+    <p class="menu-title">Ada beberapa hal lagi</p>
+    <p class="menu-sub">buka sesuai ritmemu sendiri</p>
+    <div class="menu-list">
+      <div class="menu-item" data-target="about">
+        <div><p class="menu-item-title">About You</p><p class="menu-item-sub">5 hal tentang kamu</p></div>
+        <span class="badge" id="badge-about">0/5</span>
+      </div>
+      <div class="menu-item" data-target="openwhen">
+        <div><p class="menu-item-title">Open When</p><p class="menu-item-sub">buka sesuai keadaanmu</p></div>
+        <span class="badge" id="badge-openwhen">0/3</span>
+      </div>
+      <div class="menu-item" data-target="missinghome">
+        <div><p class="menu-item-title">Missing Home?</p><p class="menu-item-sub">sedang dibuat</p></div>
+        <span class="badge uc">under construction</span>
+      </div>
+      <div class="menu-item" data-target="poem">
+        <div><p class="menu-item-title">Poem</p><p class="menu-item-sub">2 puisi</p></div>
+        <span class="badge" id="badge-poem">0/2</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT YOU -->
+  <section id="view-about" class="page hidden">
+    <p class="dateline">observed, not assumed</p>
+    <h2 class="page-title">About You</h2>
+    <div id="aboutList"></div>
+  </section>
+
+  <!-- OPEN WHEN -->
+  <section id="view-openwhen" class="page hidden">
+    <p class="dateline">seal unbroken until needed</p>
+    <h2 class="page-title">Open When</h2>
+    <div id="openwhenList"></div>
+  </section>
+
+  <!-- MISSING HOME -->
+  <section id="view-missinghome" class="page hidden">
+    <p class="dateline">masih dikerjakan</p>
+    <h2 class="page-title">Missing Home?</h2>
+    <div class="uc-banner">🚧 bagian ini masih dalam proses &mdash; 2 video sedang dibuat</div>
+    <div class="uc-item"><div class="uc-icon">🏠</div><div><div class="uc-title">Rumah</div><div class="uc-sub">sedang diproses</div></div></div>
+    <div class="uc-item"><div class="uc-icon">📚</div><div><div class="uc-title">Tempat belajar</div><div class="uc-sub">sedang diproses</div></div></div>
+  </section>
+
+  <!-- POEM -->
+  <section id="view-poem" class="page hidden">
+    <p class="dateline">dua puisi</p>
+    <h2 class="page-title">Poem</h2>
+    <div id="poemList"></div>
+  </section>
+
+  <p class="proto-tag">prototype v2 &middot; isi asli, tautan &amp; sandi masih placeholder</p>
+</div>
+
+<script>
+/* ======================================================================
+   CONFIG — edit bagian ini saja untuk mengganti sandi, link Drive,
+   dan file ID. Tidak perlu sentuh kode di bawahnya.
+   ====================================================================== */
+const CONFIG = {
+  // sandi sementara — ganti sesuai keinginanmu
+  password: "changeme",
+
+  // simpan status "unlocked" supaya tidak perlu ketik sandi tiap buka? true/false
+  rememberUnlock: false,
+
+  // foto di halaman surat: taruh nama file gambar (jika file gambar ada di folder yang sama
+  // dengan file HTML ini saat di-upload) atau taruh URL gambar langsung. Kosongkan ("") untuk placeholder.
+  letterPhotoUrl: "",
+
+  aboutYou: [
+    { id: "admire5",  title: "5 Things I Admire About You",     driveUrl: "https://drive.google.com/PASTE_LINK_1" },
+    { id: "kamu_ketika", title: "Kamu Ketika...",                driveUrl: "https://drive.google.com/PASTE_LINK_2" },
+    { id: "thankyou", title: "Thank You For...",                 driveUrl: "https://drive.google.com/PASTE_LINK_3" },
+    { id: "vacation", title: "Our Vacation",                     driveUrl: "https://drive.google.com/PASTE_LINK_4" },
+    { id: "future",   title: "Membayangkan Masa Depan Kita",     driveUrl: "https://drive.google.com/PASTE_LINK_5" },
+  ],
+
+  // type: "audio" | "video" | "image_audio" | "not_ready"
+  // fileId = ambil dari link share Drive: drive.google.com/file/d/**FILE_ID**/view
+  openWhen: [
+    { id: "exhausted", title: "Hari ini melelahkan", type: "audio", fileId: "PASTE_FILE_ID" },
+    { id: "misshome",  title: "Kamu rindu rumah",     type: "not_ready" },
+    { id: "missme",    title: "Kamu rindu aku",       type: "video", fileId: "PASTE_FILE_ID" },
+    { id: "fight",     title: "Kita baru bertengkar", type: "not_ready" },
+    { id: "proud",     title: "Kamu bangga pada dirimu sendiri", type: "image_audio", imageFileId: "PASTE_IMAGE_FILE_ID", audioFileId: "PASTE_AUDIO_FILE_ID" },
+  ],
+
+  poems: [
+    { id: "poem1", title: "Puisi 1", driveUrl: "https://drive.google.com/PASTE_LINK_6" },
+    { id: "poem2", title: "Puisi 2", driveUrl: "https://drive.google.com/PASTE_LINK_7" },
+  ],
+};
+/* ====================================================================== */
+
+const STORAGE_KEY = "ainun-gift-progress-v1";
+const UNLOCK_KEY = "ainun-gift-unlocked-v1";
+let progress = {};
+
+function driveEmbedUrl(fileId){ return `https://drive.google.com/file/d/${fileId}/preview`; }
+function isPlaceholder(v){ return !v || v.includes("PASTE_"); }
+
+async function loadProgress(){
+  try{
+    const r = await window.storage.get(STORAGE_KEY, false);
+    progress = r ? JSON.parse(r.value) : {};
+  }catch(e){ progress = {}; }
+}
+async function saveProgress(){
+  try{ await window.storage.set(STORAGE_KEY, JSON.stringify(progress), false); }catch(e){}
+}
+function toggleComplete(id){
+  progress[id] = !progress[id];
+  saveProgress();
+  renderAll();
+  updateBadges();
+}
+
+/* ---------- navigation ---------- */
+let stack = ["landing"];
+function show(view){
+  ["landing","letter","menu","about","openwhen","missinghome","poem"].forEach(v=>{
+    document.getElementById("view-"+v).classList.toggle("hidden", v!==view);
+  });
+  document.getElementById("backBtn").classList.toggle("hidden", view==="landing");
+  window.scrollTo(0,0);
+}
+function goTo(view){ stack.push(view); show(view); }
+function goBack(){
+  if(stack.length>1){ stack.pop(); show(stack[stack.length-1]); }
+}
+document.getElementById("backBtn").addEventListener("click", goBack);
+
+/* ---------- landing / password ---------- */
+document.getElementById("pwBtn").addEventListener("click", tryUnlock);
+document.getElementById("pwInput").addEventListener("keydown", e=>{ if(e.key==="Enter") tryUnlock(); });
+async function tryUnlock(){
+  const val = document.getElementById("pwInput").value.trim();
+  if(val.toLowerCase() === CONFIG.password.toLowerCase()){
+    document.getElementById("pwError").textContent = "";
+    if(CONFIG.rememberUnlock){
+      try{ await window.storage.set(UNLOCK_KEY, "true", false); }catch(e){}
+    }
+    goTo("letter");
+  } else {
+    document.getElementById("pwError").textContent = "sandi belum tepat, coba lagi";
+  }
+}
+
+document.getElementById("toMenuBtn").addEventListener("click", ()=>goTo("menu"));
+
+document.querySelectorAll(".menu-item").forEach(item=>{
+  item.addEventListener("click", ()=>{
+    const target = item.dataset.target;
+    if(target) goTo(target);
+  });
+});
+
+/* ---------- About You ---------- */
+function renderAbout(){
+  const wrap = document.getElementById("aboutList");
+  wrap.innerHTML = "";
+  CONFIG.aboutYou.forEach(item=>{
+    const done = !!progress[item.id];
+    const row = document.createElement("div");
+    row.className = "doc-row";
+    row.innerHTML = `
+      <div class="doc-row-top">
+        <span class="doc-title">${item.title}</span>
+        ${done ? '<span class="complete-mark">&#10003; sudah dibuka</span>' : ''}
+      </div>
+      <div class="row-actions">
+        <a class="btn-secondary" href="${item.driveUrl}" target="_blank" rel="noopener">Buka dokumen ↗</a>
+        <button class="btn-primary ${done?'btn-done':''}" data-id="${item.id}">${done ? "Batalkan tanda" : "Tandai selesai"}</button>
+      </div>
+    `;
+    wrap.appendChild(row);
+  });
+  wrap.querySelectorAll("button[data-id]").forEach(btn=>{
+    btn.addEventListener("click", ()=>toggleComplete(btn.dataset.id));
+  });
+}
+
+/* ---------- Open When ---------- */
+function renderOpenWhen(){
+  const wrap = document.getElementById("openwhenList");
+  wrap.innerHTML = "";
+  CONFIG.openWhen.forEach(item=>{
+    const done = !!progress[item.id];
+    const isNotReady = item.type === "not_ready";
+    const env = document.createElement("div");
+    env.className = "envelope" + (isNotReady ? " locked" : "") + (done ? " open" : "");
+    let mediaHtml = "";
+    if(item.type === "audio"){
+      mediaHtml = isPlaceholder(item.fileId)
+        ? `<div class="embed-placeholder">tempel file ID audio di CONFIG untuk menampilkan pemutar di sini</div>`
+        : `<div class="embed-label">audio</div><div class="embed-box"><iframe src="${driveEmbedUrl(item.fileId)}" width="100%" height="80" allow="autoplay" style="border:none"></iframe></div>`;
+    } else if(item.type === "video"){
+      mediaHtml = isPlaceholder(item.fileId)
+        ? `<div class="embed-placeholder">tempel file ID video di CONFIG untuk menampilkan pemutar di sini</div>`
+        : `<div class="embed-box"><iframe src="${driveEmbedUrl(item.fileId)}" width="100%" height="220" allow="autoplay" style="border:none"></iframe></div>`;
+    } else if(item.type === "image_audio"){
+      const imgOk = !isPlaceholder(item.imageFileId);
+      const audOk = !isPlaceholder(item.audioFileId);
+      mediaHtml = `
+        ${imgOk ? `<div class="embed-box"><iframe src="${driveEmbedUrl(item.imageFileId)}" width="100%" height="220" style="border:none"></iframe></div>` : `<div class="embed-placeholder">tempel file ID gambar di CONFIG</div>`}
+        ${audOk ? `<div class="embed-label">audio pendamping</div><div class="embed-box"><iframe src="${driveEmbedUrl(item.audioFileId)}" width="100%" height="80" allow="autoplay" style="border:none"></iframe></div>` : `<div class="embed-placeholder">tempel file ID audio di CONFIG</div>`}
+      `;
+    }
+
+    env.innerHTML = `
+      <div class="envelope-flap" data-flap="${item.id}">
+        <span class="envelope-title">${item.title}</span>
+        ${isNotReady ? '<span class="not-ready-tag">belum siap</span>' : '<span class="wax-seal">W</span>'}
+      </div>
+      <div class="envelope-content">
+        ${!isNotReady ? mediaHtml : ""}
+        ${!isNotReady ? `<div class="row-actions" style="margin-top:8px">
+            <button class="btn-primary ${done?'btn-done':''}" data-id="${item.id}">${done ? "Batalkan tanda" : "Tandai selesai dibuka"}</button>
+          </div>` : ""}
+      </div>
+    `;
+    wrap.appendChild(env);
+  });
+
+  wrap.querySelectorAll(".envelope:not(.locked) .envelope-flap").forEach(flap=>{
+    flap.addEventListener("click", (e)=>{
+      if(e.target.closest("button")) return;
+      flap.closest(".envelope").classList.toggle("open");
+    });
+  });
+  wrap.querySelectorAll("button[data-id]").forEach(btn=>{
+    btn.addEventListener("click", (e)=>{
+      e.stopPropagation();
+      toggleComplete(btn.dataset.id);
+    });
+  });
+}
+
+/* ---------- Poem ---------- */
+function renderPoem(){
+  const wrap = document.getElementById("poemList");
+  wrap.innerHTML = "";
+  CONFIG.poems.forEach(item=>{
+    const done = !!progress[item.id];
+    const row = document.createElement("div");
+    row.className = "doc-row";
+    row.innerHTML = `
+      <div class="doc-row-top">
+        <span class="doc-title">${item.title}</span>
+        ${done ? '<span class="complete-mark">&#10003; sudah dibaca</span>' : ''}
+      </div>
+      <div class="row-actions">
+        <a class="btn-secondary" href="${item.driveUrl}" target="_blank" rel="noopener">Buka PDF ↗</a>
+        <button class="btn-primary ${done?'btn-done':''}" data-id="${item.id}">${done ? "Batalkan tanda" : "Tandai selesai"}</button>
+      </div>
+    `;
+    wrap.appendChild(row);
+  });
+  wrap.querySelectorAll("button[data-id]").forEach(btn=>{
+    btn.addEventListener("click", ()=>toggleComplete(btn.dataset.id));
+  });
+}
+
+function updateBadges(){
+  const aboutDone = CONFIG.aboutYou.filter(i=>progress[i.id]).length;
+  const owDone = CONFIG.openWhen.filter(i=>i.type!=="not_ready" && progress[i.id]).length;
+  const owTotal = CONFIG.openWhen.filter(i=>i.type!=="not_ready").length;
+  const poemDone = CONFIG.poems.filter(i=>progress[i.id]).length;
+  document.getElementById("badge-about").textContent = `${aboutDone}/${CONFIG.aboutYou.length}`;
+  document.getElementById("badge-openwhen").textContent = `${owDone}/${owTotal}`;
+  document.getElementById("badge-poem").textContent = `${poemDone}/${CONFIG.poems.length}`;
+}
+
+function renderAll(){
+  renderAbout();
+  renderOpenWhen();
+  renderPoem();
+}
+
+function renderLetterPhoto(){
+  const frame = document.getElementById("letterPhotoFrame");
+  if(CONFIG.letterPhotoUrl){
+    frame.innerHTML = `<img src="${CONFIG.letterPhotoUrl}" alt="foto berdua" style="width:100%;height:100%;object-fit:cover;border-radius:1px;">`;
+  }
+}
+
+(async function init(){
+  await loadProgress();
+  renderAll();
+  updateBadges();
+  renderLetterPhoto();
+  show("landing");
+  if(CONFIG.rememberUnlock){
+    try{
+      const r = await window.storage.get(UNLOCK_KEY, false);
+      if(r && r.value === "true"){ stack = ["landing","letter"]; show("letter"); }
+    }catch(e){}
+  }
+})();
+</script>
+</body>
+</html>
