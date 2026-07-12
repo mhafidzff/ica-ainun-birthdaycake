@@ -215,7 +215,7 @@
         <span class="badge" id="badge-about">0/5</span>
       </div>
       <div class="menu-item" data-target="openwhen">
-        <div><p class="menu-item-title">Open When...</p><p class="menu-item-sub">buka hanya jika kamu lagi</p></div>
+        <div><p class="menu-item-title">Open When...</p><p class="menu-item-sub">buka hanya ketika kamu lagi...</p></div>
         <span class="badge" id="badge-openwhen">0/3</span>
       </div>
       <div class="menu-item" data-target="missinghome">
@@ -231,14 +231,14 @@
 
   <!-- ABOUT YOU -->
   <section id="view-about" class="page hidden">
-    <p class="dateline">observed, not assumed</p>
+    <p class="dateline">aku lihat kamu begini, kamu lihat aku begitu</p>
     <h2 class="page-title">About You</h2>
     <div id="aboutList"></div>
   </section>
 
   <!-- OPEN WHEN -->
   <section id="view-openwhen" class="page hidden">
-    <p class="dateline">seal unbroken until needed</p>
+    <p class="dateline">ditutup rapat-rapat sampai kamu butuh</p>
     <h2 class="page-title">Open When</h2>
     <div id="openwhenList"></div>
   </section>
@@ -293,11 +293,11 @@ const CONFIG = {
   // type: "audio" | "video" | "image_audio" | "not_ready"
   // fileId = ambil dari link share Drive: drive.google.com/file/d/**FILE_ID**/view
   openWhen: [
-    { id: "exhausted", title: "Hari ini melelahkan", type: "audio", fileId: "exhausted.mp4" },
+    { id: "exhausted", title: "Hari ini melelahkan", type: "audio", fileId: "https://drive.google.com/file/d/1h51QyV5zbUwn_2lxN2Dcuf_x__jhVBOk/view?usp=drive_link" },
     { id: "misshome",  title: "Kamu rindu rumah",     type: "not_ready" },
-    { id: "missme",    title: "Kamu rindu aku",       type: "video", fileId: "PASTE_FILE_ID" },
+    { id: "missme",    title: "Kamu rindu aku",       type: "video", fileId: "https://drive.google.com/file/d/14nimXI9gmDCywEParRxX8ndATexCxz4l/view?usp=drive_link" },
     { id: "fight",     title: "Kita baru bertengkar", type: "not_ready" },
-    { id: "proud",     title: "Kamu bangga pada dirimu sendiri", type: "image_audio", imageFileId: "PASTE_IMAGE_FILE_ID", audioFileId: "proud of you.mp4" },
+    { id: "proud",     title: "Kamu bangga pada dirimu sendiri", type: "image_audio", imageFileId: "https://drive.google.com/file/d/1fmjLUiCqrycRsipwyJyl6JgAj4XbTF8g/view?usp=drive_link", audioFileId: "https://drive.google.com/file/d/11WpVE6_TSx--__fpgucI3a-3yQzHBvii/view?usp=drive_link" },
   ],
 
   poems: [
