@@ -207,8 +207,8 @@
 
   <!-- MAIN MENU -->
   <section id="view-menu" class="menu-page hidden">
-    <p class="menu-title">Ada beberapa hal lagi</p>
-    <p class="menu-sub">buka sesuai ritmemu sendiri</p>
+    <p class="menu-title">Hal-hal tentang kamu, aku, dan kita</p>
+    <p class="menu-sub">buka pelan-pelan. ga semuanya hari ini ya</p>
     <div class="menu-list">
       <div class="menu-item" data-target="about">
         <div><p class="menu-item-title">About You</p><p class="menu-item-sub">yang aku selalu terngiang-ngiang</p></div>
@@ -254,7 +254,7 @@
 
   <!-- POEM -->
   <section id="view-poem" class="page hidden">
-    <p class="dateline">dua puisi</p>
+    <p class="dateline">dua puisi aku plus dua bonus</p>
     <h2 class="page-title">Poem</h2>
     <div id="poemList"></div>
   </section>
@@ -293,11 +293,11 @@ const CONFIG = {
   // type: "audio" | "video" | "image_audio" | "not_ready"
   // fileId = ambil dari link share Drive: drive.google.com/file/d/**FILE_ID**/view
   openWhen: [
-    { id: "exhausted", title: "Hari ini melelahkan", type: "audio", fileId: "PASTE_FILE_ID" },
+    { id: "exhausted", title: "Hari ini melelahkan", type: "audio", fileId: "exhausted.mp4" },
     { id: "misshome",  title: "Kamu rindu rumah",     type: "not_ready" },
     { id: "missme",    title: "Kamu rindu aku",       type: "video", fileId: "PASTE_FILE_ID" },
     { id: "fight",     title: "Kita baru bertengkar", type: "not_ready" },
-    { id: "proud",     title: "Kamu bangga pada dirimu sendiri", type: "image_audio", imageFileId: "PASTE_IMAGE_FILE_ID", audioFileId: "PASTE_AUDIO_FILE_ID" },
+    { id: "proud",     title: "Kamu bangga pada dirimu sendiri", type: "image_audio", imageFileId: "PASTE_IMAGE_FILE_ID", audioFileId: "proud of you.mp4" },
   ],
 
   poems: [
@@ -485,7 +485,7 @@ function renderPoem(){
         ${done ? '<span class="complete-mark">&#10003; sudah dibaca</span>' : ''}
       </div>
       <div class="row-actions">
-        <a class="btn-secondary" href="${item.driveUrl}" target="_blank" rel="noopener">Buka PDF ↗</a>
+        <a class="btn-secondary" href="${item.driveUrl}" target="_blank" rel="noopener">Buka ↗</a>
         <button class="btn-primary ${done?'btn-done':''}" data-id="${item.id}">${done ? "Batalkan tanda" : "Tandai selesai"}</button>
       </div>
     `;
